@@ -121,7 +121,7 @@ def recoverData(data, steps):
             list.append(row)                                #Extract data from the csv structure into list
     for ii in range(0, steps+1):
             for jj in range(0,5):
-                results[jj].append(list.pop(0).pop())   #Extract the first two values of each serias (V,I) into results
+                results[jj].append(float(list.pop(0).pop()))   #Convert string to float
     return results[0:2]
 
 def joinData(data1, data2):
@@ -131,11 +131,10 @@ def joinData(data1, data2):
 
 def plotCurve(app, figure, figCanvas, data):
     figure.plot(data[0],data[1])
-    figure.hold(True)
     figure.grid(b=True, which='major', color='r', linestyle='--')
     figure.axis([app.XStart.get(), app.XStop.get() , app.YStart.get() , app.YStop.get()]) ######################CHANGE
     figCanvas.show()
-    #plt.pause(0.001)
+    plt.pause(0.001)
     app.update()
 
 def setFilename(filename, filenameText, filenameNumber):
